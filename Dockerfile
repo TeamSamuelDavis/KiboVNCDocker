@@ -23,4 +23,6 @@ ENV INSTALL_PATH=$HOME/astrobee_install/native
 RUN $SOURCE_PATH/scripts/configure.sh -l -F -D
 RUN apt-get install -y libignition-math2-dev
 RUN cd $BUILD_PATH && make -j2
+RUN echo "source $BUILD_PATH/devel/setup.bash && roslaunch astrobee sim.launch dds:=false robot:=sim_pub rviz:=true" >> /root/launch.sh && chmod +x /root/launch.sh
 
+RUN apt-get -y install adb
